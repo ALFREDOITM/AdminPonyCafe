@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "452452237419",
+    "firebase_url": "https://ponycafe-32df1-default-rtdb.firebaseio.com",
+    "project_id": "ponycafe-32df1",
+    "storage_bucket": "ponycafe-32df1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452452237419:android:e00500ffee9b064efef12e",
+        "android_client_info": {
+          "package_name": "org.example.adminponycafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452452237419-mbrivlvm5bsr6pub17jael7svk318mha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtQFFSY7TDT8eH0VLCyHwHhujLiT_f1DA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452452237419-mbrivlvm5bsr6pub17jael7svk318mha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452452237419:android:11b283d7a00bb1dffef12e",
+        "android_client_info": {
+          "package_name": "org.example.ponycafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452452237419-mbrivlvm5bsr6pub17jael7svk318mha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtQFFSY7TDT8eH0VLCyHwHhujLiT_f1DA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452452237419-mbrivlvm5bsr6pub17jael7svk318mha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
