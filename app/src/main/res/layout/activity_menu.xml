@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="22dp"
+        android:text="Agregar Nuevo Elemento Al Menu"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingrese nombre de alimento:"
+        />
+    <EditText
+        android:id="@+id/etFName"
+        android:hint="Ejemplo: Chilaquiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingrese descripcion del alimento:"
+        />
+    <EditText
+        android:id="@+id/etFDesc"
+        android:hint="Ejemplo: Tortilla bañada en salsa con ...."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingrese costo del alimento:"
+        />
+    <EditText
+        android:id="@+id/etFCost"
+        android:hint="Ejemplo: $100"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <ImageView
+        android:id="@+id/ivFPicture"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Guardar"
+        />
+  </LinearLayout>
