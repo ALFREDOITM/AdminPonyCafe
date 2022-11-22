@@ -3,9 +3,9 @@ package org.example.adminponycafe
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -32,10 +32,11 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun selectImage(){
+        val mimeTypes = arrayOf("image/jpeg", "image/jpg")
         val intent = Intent()
         intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
         intent.action = Intent.ACTION_GET_CONTENT
-
         startActivityForResult(intent, 100)
     }
 
