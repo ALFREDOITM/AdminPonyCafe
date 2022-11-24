@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     //pa leer datos
     private lateinit var bindingMain : ActivityMainBinding
     private lateinit var database: DatabaseReference
+    private var userTemp = ""
+    private var pc=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,18 +24,61 @@ class MainActivity : AppCompatActivity() {
 
         bindingMain=ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingMain.root)
+
         bindingMain.btnSearch.setOnClickListener{
             val userName : String= bindingMain.etUser.text.toString()
+            userTemp= bindingMain.etUser.text.toString()
             if(userName.isNotEmpty()){
                 readData(userName)
             }else{
                 Toast.makeText(this,"Ingresa un usuario por favor.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        bindingMain.btnAdd.setOnClickListener{
+            //val userName=bindingMain.etUser.text.toString()
+            Toast.makeText(this,userTemp,Toast.LENGTH_SHORT).show()
+            pc=bindingMain.etCredit.text.toString()
+            addPonyCredits(userTemp,pc)
+
+        }
+    }
+
+    private fun addPonyCredits(userTemp: String, pc: String) {
+        //Toast.makeText(this,pc,Toast.LENGTH_SHORT).show()
+        database=FirebaseDatabase.getInstance().getReference("users")
+        val credits= mapOf<String,String>(
+            "ponycreditos" to pc
+        )
+        database.child(userTemp).updateChildren(credits).addOnSuccessListener {
+
+            bindingMain.etCredit.text.clear()
+            Toast.makeText(this,"Se añadieron "+pc+" créditos",Toast.LENGTH_SHORT).show()
+            readData(userTemp)
+        }.addOnFailureListener{
+            Toast.makeText(this,"Fallo el agregar creditos", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun readData(userName: String) {
         database=FirebaseDatabase.getInstance().getReference("users")
+        database.child(userName).get().addOnSuccessListener {
+            if (it.exists()){
+                val ponycreditos=it.child("ponycreditos").value
+                val name=it.child("name").value
+                val email=it.child("email").value
+
+                bindingMain.etUser.text.clear()
+                bindingMain.tvNameRead.text=name.toString()
+                bindingMain.tvEmailRead.text=email.toString()
+                bindingMain.tvPonyCreditsRead.text=ponycreditos.toString()
+
+            }else {
+                Toast.makeText(this,"El usuario no existe", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this,"Fallo", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

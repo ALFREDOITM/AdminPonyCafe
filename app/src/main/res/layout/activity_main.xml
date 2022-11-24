@@ -39,4 +39,94 @@
         app:layout_constraintLeft_toRightOf="@+id/etUser"
         app:layout_constraintTop_toBottomOf="@+id/etTitle"
         android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/etCredit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btnSearch"
+        app:layout_constraintTop_toBottomOf="@+id/etUser"
+        android:hint="Cantidad de ponycreditos"
+        android:layout_marginTop="20dp"
+        android:inputType="number"/>
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Añadir"
+        app:layout_constraintLeft_toRightOf="@+id/etCredit"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch"
+        android:layout_marginTop="20dp"/>
+
+    <View
+        android:id="@+id/vw"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/etCredit"
+        android:layout_margin="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre: "
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCredit"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:id="@+id/tvNameRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/etCredit"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: "
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tvEmailRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tvEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/tvPonyCredits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pony-Créditos: "
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tvPonyCreditsRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tvPonyCredits"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
