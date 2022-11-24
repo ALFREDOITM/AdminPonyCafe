@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import org.example.adminponycafe.databinding.ActivityMainBinding
 import org.example.adminponycafe.databinding.ActivityMenuBinding
 import java.io.File
 import java.text.SimpleDateFormat
@@ -18,6 +19,7 @@ class MenuActivity : AppCompatActivity() {
     lateinit var binding : ActivityMenuBinding
     lateinit var ImageUri : Uri
     lateinit var database : DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,6 @@ class MenuActivity : AppCompatActivity() {
             uploadImage()
         }
     }
-
     private fun selectImage(){
         val mimeTypes = arrayOf("image/jpeg", "image/jpg")
         val intent = Intent()
