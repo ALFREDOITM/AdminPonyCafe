@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import org.example.adminponycafe.databinding.ActivityMenuBinding
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,20 +58,31 @@ class MenuActivity : AppCompatActivity() {
         val fileName = formatter.format(now)
         val storageReference = FirebaseStorage.getInstance().getReference("Food/$fileName")
         storageReference.putFile(ImageUri).addOnSuccessListener {
-            binding.ivFPicture.setImageURI(null)
-            Toast.makeText(this@MenuActivity,"Subido de manera exitosa", Toast.LENGTH_SHORT).show()
+            storageReference.downloadUrl.addOnSuccessListener {
+                uploadData(it.toString())
+            }
+            binding.ivFPicture.setImageDrawable(null)
+            //Toast.makeText(this@MenuActivity,"Subido con exito", Toast.LENGTH_SHORT).show()
             if (progressDialog.isShowing) progressDialog.dismiss()
         }.addOnFailureListener {
             if (progressDialog.isShowing) progressDialog.dismiss()
             Toast.makeText(this@MenuActivity,"Ha fallado", Toast.LENGTH_SHORT).show()
         }
 
+        //val storeRef = FirebaseStorage.getInstance().reference.child("Food/$fileName.jpeg")
+        //val img = storeRef.bucket
+
+
+    }
+
+    private fun uploadData(i: String) {
         val name = binding.etFName.text.toString()
         val desc = binding.etFDesc.text.toString()
         val cost = binding.etFCost.text.toString().toInt()
 
         database = FirebaseDatabase.getInstance().getReference("menu")
-        val item = MenuItem(name, desc, cost, fileName)
+        val item = MenuItem(name, desc, cost, i)
+
         database.child(name).setValue(item).addOnSuccessListener {
             Toast.makeText(this, "Subido de manera exitosa",Toast.LENGTH_SHORT).show()
             binding.etFName.text = null
