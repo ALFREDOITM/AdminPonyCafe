@@ -17,7 +17,7 @@ import java.util.*
 
 class MenuActivity : AppCompatActivity() {
     lateinit var binding : ActivityMenuBinding
-    lateinit var ImageUri : Uri
+    lateinit var imageUri : Uri
     lateinit var database : DatabaseReference
 
 
@@ -45,8 +45,8 @@ class MenuActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK){
-            ImageUri = data?.data!!
-            binding.ivFPicture.setImageURI(ImageUri)
+            imageUri = data?.data!!
+            binding.ivFPicture.setImageURI(imageUri)
         }
     }
     private fun uploadImage(){
@@ -58,7 +58,7 @@ class MenuActivity : AppCompatActivity() {
         val now = Date()
         val fileName = formatter.format(now)
         val storageReference = FirebaseStorage.getInstance().getReference("Food/$fileName")
-        storageReference.putFile(ImageUri).addOnSuccessListener {
+        storageReference.putFile(imageUri).addOnSuccessListener {
             storageReference.downloadUrl.addOnSuccessListener {
                 uploadData(it.toString())
             }
