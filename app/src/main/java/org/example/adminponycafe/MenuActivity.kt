@@ -2,16 +2,14 @@ package org.example.adminponycafe
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.icu.number.IntegerWidth
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
-import org.example.adminponycafe.databinding.ActivityMainBinding
 import org.example.adminponycafe.databinding.ActivityMenuBinding
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,6 +17,8 @@ class MenuActivity : AppCompatActivity() {
     lateinit var binding : ActivityMenuBinding
     lateinit var imageUri : Uri
     lateinit var database : DatabaseReference
+    lateinit var dbref : DatabaseReference
+    lateinit var foodList: ArrayList<MenuItem>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +82,7 @@ class MenuActivity : AppCompatActivity() {
         val cost = binding.etFCost.text.toString().toInt()
 
         database = FirebaseDatabase.getInstance().getReference("menu")
+
         val item = MenuItem(name, desc, cost, i)
 
         database.child(name).setValue(item).addOnSuccessListener {
