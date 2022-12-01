@@ -17,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private var userTemp = ""
     private var pc=""
+    private  var pcNow=0
+    private var sumaPC=0
+    private var temppc="1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,18 +36,24 @@ class MainActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(this,"Ingresa un usuario por favor.", Toast.LENGTH_SHORT).show()
             }
+            pcNow=temppc.toInt()+20
+            Toast.makeText(this,"xd"+pcNow.toString(),Toast.LENGTH_SHORT).show()
+
         }
 
         bindingMain.btnAdd.setOnClickListener{
             //val userName=bindingMain.etUser.text.toString()
             Toast.makeText(this,userTemp,Toast.LENGTH_SHORT).show()
+            //sumaPC=pcNow
+
             pc=bindingMain.etCredit.text.toString()
-            addPonyCredits(userTemp,pc)
+            addPonyCredits(userTemp,pc,pcNow)
+
 
         }
     }
 
-    private fun addPonyCredits(userTemp: String, pc: String) {
+    private fun addPonyCredits(userTemp: String, pc: String, pcNow:Int) {
         //Toast.makeText(this,pc,Toast.LENGTH_SHORT).show()
         database=FirebaseDatabase.getInstance().getReference("users")
         val credits= mapOf<String,String>(
@@ -67,18 +76,19 @@ class MainActivity : AppCompatActivity() {
                 val ponycreditos=it.child("ponycreditos").value
                 val name=it.child("name").value
                 val email=it.child("email").value
-
                 bindingMain.etUser.text.clear()
                 bindingMain.tvNameRead.text=name.toString()
                 bindingMain.tvEmailRead.text=email.toString()
                 bindingMain.tvPonyCreditsRead.text=ponycreditos.toString()
 
+                temppc=ponycreditos.toString()
             }else {
                 Toast.makeText(this,"El usuario no existe", Toast.LENGTH_SHORT).show()
             }
         }.addOnFailureListener {
             Toast.makeText(this,"Fallo", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
