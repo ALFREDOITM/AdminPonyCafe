@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import org.example.adminponycafe.databinding.ActivityMainBinding
+enum class ProviderType{
+    BASIC
+}
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +32,11 @@ class MainActivity : AppCompatActivity() {
 
         bindingMain=ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingMain.root)
+
+        val bundle =intent.extras
+        val email =bundle?.getString("email")
+        val provider =bundle?.getString("provider")
+        setup()
 
         bindingMain.btnSearch.setOnClickListener{
             val userName : String= bindingMain.etUser.text.toString()
@@ -50,6 +60,13 @@ class MainActivity : AppCompatActivity() {
             addPonyCredits(userTemp,pc,pcNow)
 
 
+        }
+    }
+
+    private fun setup() {
+        findViewById<Button>(R.id.btnLogout).setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            onBackPressed()
         }
     }
 

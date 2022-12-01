@@ -128,5 +128,15 @@
         android:layout_marginLeft="30dp"
         android:textSize="20sp"
         android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Cerrar Sesison"
+        android:layout_marginBottom="40dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
