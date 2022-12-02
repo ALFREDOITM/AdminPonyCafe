@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
             putExtra("email",email)
         }
         startActivity(mainIntent)
+        finish()
     }
 
     private fun alert(){

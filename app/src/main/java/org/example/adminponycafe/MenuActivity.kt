@@ -32,6 +32,11 @@ class MenuActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener{
             uploadImage()
         }
+        binding.btnBack.setOnClickListener {
+            val start = Intent(this, MainActivity::class.java)
+            startActivity(start)
+            finish()
+        }
     }
     private fun selectImage(){
         val mimeTypes = arrayOf("image/jpeg", "image/jpg")

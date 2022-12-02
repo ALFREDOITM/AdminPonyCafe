@@ -11,11 +11,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import org.example.adminponycafe.databinding.ActivityMainBinding
+import android.view.GestureDetector
+import android.view.MotionEvent
+import java.lang.Math.abs
+
 enum class ProviderType{
     BASIC
 }
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
 
     //pa leer datos
     private lateinit var bindingMain : ActivityMainBinding
@@ -25,6 +29,17 @@ class MainActivity : AppCompatActivity() {
     private  var pcNow=0
     private var sumaPC=0
     private var temppc="1"
+
+    //gestos
+    lateinit var gestureDetector: GestureDetector
+    private var x2:Float =0.0f
+    private var x1:Float =0.0f
+    private var y2:Float =0.0f
+    private var y1:Float =0.0f
+
+    companion object{
+        const val MIN_DISTANCE=150
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         val email =bundle?.getString("email")
         val provider =bundle?.getString("provider")
         setup()
-
+        gestureDetector= GestureDetector(this,this)
         bindingMain.btnSearch.setOnClickListener{
             val userName : String= bindingMain.etUser.text.toString()
             userTemp= bindingMain.etUser.text.toString()
@@ -66,7 +81,9 @@ class MainActivity : AppCompatActivity() {
     private fun setup() {
         findViewById<Button>(R.id.btnLogout).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            onBackPressed()
+            val start = Intent(this, LoginActivity::class.java)
+            startActivity(start)
+            finish()
         }
     }
 
@@ -134,5 +151,67 @@ class MainActivity : AppCompatActivity() {
     fun lanzarMenuInterface(){
         val i = Intent(this, MenuActivity::class.java)
         startActivity(i)
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        gestureDetector.onTouchEvent(event)
+        when(event?.action){
+
+            //inicio swipe
+            0->{
+                x1=event.x
+                y1=event.y
+            }
+
+            //fin swipe
+            1->{
+                x2=event.x
+                y2=event.y
+
+                val valueX:Float=x2-x1
+                val valueY:Float=y2-y1
+
+                if (abs(valueX)> MIN_DISTANCE){
+                    if(x2>x1){
+                        val start = Intent(this, MenuActivity::class.java)
+                        startActivity(start)//Toast.makeText(this,"derecha",Toast.LENGTH_SHORT).show()
+
+                    }else{
+                        //Toast.makeText(this,"izq",Toast.LENGTH_SHORT).show()
+                        FirebaseAuth.getInstance().signOut()
+                        val start = Intent(this, LoginActivity::class.java)
+                        startActivity(start)
+                        finish()
+                    }
+                }
+            }
+        }
+
+        return super.onTouchEvent(event)
+    }
+
+    //Gestos
+    override fun onDown(p0: MotionEvent?): Boolean {
+        return false
+    }
+
+    override fun onShowPress(p0: MotionEvent?) {
+
+    }
+
+    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
+        return false
+    }
+
+    override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+        return false
+    }
+
+    override fun onLongPress(p0: MotionEvent?) {
+
+    }
+
+    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+        return false
     }
 }
