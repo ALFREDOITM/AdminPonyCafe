@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
                     .signInWithEmailAndPassword(findViewById<EditText>(R.id.etEmail).text.toString(),
                         findViewById<EditText>(R.id.etPass).text.toString()).addOnCompleteListener {
                         if(it.isSuccessful){
-                            launchHome(it.result?.user?.email ?: "",ProviderType.BASIC)
+                            launchHome(it.result?.user?.email ?: "")
                         }else{
                             alert()
                         }
@@ -33,10 +33,9 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-    private fun launchHome(email:String, provider: ProviderType){
+    private fun launchHome(email:String){
         val mainIntent=Intent(this, MainActivity::class.java).apply {
             putExtra("email",email)
-            putExtra("provider",provider.name)
         }
         startActivity(mainIntent)
     }
